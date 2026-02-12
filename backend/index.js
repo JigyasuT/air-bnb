@@ -16,7 +16,7 @@ let app=express()
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin:"http://localhost:5173",
+    origin:"https://air-bnb-1k6k.onrender.com",
     credentials:true
 }))
   
