@@ -14,8 +14,8 @@ export const signUp=async (req,res)=>{
         let token=await genToken(user._id)
     res.cookie("token",token,{
      httpOnly:true,
-     secure:process.env.NODE_ENVIRONMENT="production",
-     sameSite:"strict",
+     secure:true",
+     sameSite:"none",
      maxAge:7*24*60*60*1000
     })
     return res.status(201).json(user)
@@ -38,17 +38,11 @@ export const login =async (req,res)=>{
      }
         let token=await genToken(user._id)
 
-    // res.cookie("token",token,{
-    //  httpOnly:true,
-    //  secure:process.env.NODE_ENVIRONMENT==="production",
-    //  sameSite:"strict",
-    //  maxAge:7*24*60*60*1000
-    // })
 
     res.cookie("token", token, {
   httpOnly: true,
-  secure: false,          // localhost
-  sameSite: "lax",        // IMPORTANT
+  secure: true,          // localhost
+  sameSite: "none",        // IMPORTANT
   maxAge: 7 * 24 * 60 * 60 * 1000,
 });
 
@@ -60,21 +54,14 @@ export const login =async (req,res)=>{
     }
 }
 
-//    export const logOut=async (req,res)=>{
-//       try {
-//         res.clearCookie("token")
-//         return res.status(200).json({message:"User Logout Successfully"})
-//       } catch (error) {
-//         return res.status(500).json({message:`logout error ${error}`})
-//       }
-//    }
+
 
 export const logOut = async (req, res) => {
   try {
     res.clearCookie("token", {
       httpOnly: true,
-      secure: false,   // 🔥 SAME
-      sameSite: "lax", // 🔥 SAME
+      secure: true,   // 🔥 SAME
+      sameSite: "none", // 🔥 SAME
     });
 
     return res.status(200).json({
