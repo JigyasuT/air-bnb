@@ -13,7 +13,7 @@ listingRouter.post("/add",isAuth,upload.fields([
 ]),addListing)
 
 listingRouter.get("/get",getListing)
-listingRouter.get("/findlistingbyid/:id",findListing)
+listingRouter.get("/findlistingByid/:id",findListing)
 
 listingRouter.delete("/delete/:id",isAuth,deleteListing)
 listingRouter.post("/ratings/:id",isAuth,ratingListing)
